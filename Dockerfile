@@ -16,9 +16,16 @@ USER myuser
 # Copy the index.html file to the Caddy public directory
 COPY index.html /usr/share/caddy/
 
+# Create a Caddyfile for custom Caddy configuration
+RUN echo "{
+    http_port 80
+    root * /usr/share/caddy
+    encode gzip
+}" > /etc/caddy/Caddyfile
+
 # Expose SSH and HTTP ports
 EXPOSE 22
 EXPOSE 80
 
-# Start Caddy
-CMD ["caddy", "run"]
+# Start Caddy with the custom Caddyfile
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
