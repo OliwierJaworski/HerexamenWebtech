@@ -8,16 +8,18 @@
 <h1>Welcome to my page</h1>
 
 <?php
-$servername = "127.0.0.1";
-$username = "postgres";
+$host = "127.0.0.1";
+$port = "5432";
+$dbname = "pynqdata";
+$user = "postgres";
 $password = "OliExam";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password);
+// Establish a connection
+$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . pg_last_error());
 }
 echo "Connected successfully";
 ?>
