@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Page</title>
+    <title>PHP Test</title>
 </head>
-<body onload="fetchData()">
-
-<h1>Welcome to my page</h1>
-
-<div id="data-container"></div>
-
-<script>
-    function fetchData() {
-        fetch('PHPTEST1.php')  // Change to the correct PHP filename
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('data-container').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-</script>
-
+<body>
+<h1>Testing PHP within HTML</h1>
+<p><?php echo "Hello, PHP is working!"; ?></p>
 </body>
 </html>
