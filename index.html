@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>My Page</title>
 </head>
-<title>My Page</title>
 <body onload="fetchData()">
 
 <h1>Welcome to my page</h1>
@@ -11,7 +11,7 @@
 
 <script>
     function fetchData() {
-        fetch('PHPTEST1.php')
+        fetch('PHPTEST1.php')  // Change to the correct PHP filename
             .then(response => response.text())
             .then(data => {
                 document.getElementById('data-container').innerHTML = data;
