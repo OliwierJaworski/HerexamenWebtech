@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello, World!</title>
 </head>
+<title>My Page</title>
 <body>
-<h1>Hello, World!</h1>
-<p>This is a simple HTML page.</p>
+
+<h1>Welcome to my page</h1>
 
 <?php
-$connection = pg_connect("host=127.0.0.0")
+$servername = "127.0.0.1";
+$username = "postgres";
+$password = "OliExam";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
 ?>
 </body>
 </html>

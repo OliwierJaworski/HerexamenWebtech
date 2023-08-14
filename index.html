@@ -3,23 +3,24 @@
 <head>
 </head>
 <title>My Page</title>
-<body>
+<body onload="fetchData()">
 
 <h1>Welcome to my page</h1>
 
-<?php
-$servername = "127.0.0.1";
-$username = "postgres";
-$password = "OliExam";
+<div id="data-container"></div>
 
-// Create connection
-$conn = new mysqli($servername, $username, $password);
+<script>
+    function fetchData() {
+        fetch('PHPTEST1.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('data-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
 
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
-?>
 </body>
 </html>
