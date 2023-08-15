@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_URI'] === '/temperature.php') {
     }
 
     // Performing SQL query
-    $query = "SELECT number FROM testnumbers";
+    $query = "SELECT number FROM Testnumbers";
     $result = pg_query($conn, $query);
 
     if (!$result) {
