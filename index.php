@@ -1,31 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Thibeee</title>
+    <link href="StyleGelukt.css" rel="stylesheet">
 </head>
-<title>My Page</title>
 <body>
+<div class="menu-bar">
+    <ul>
+        <li class="active"><a href="index.html">back</a></li>
+    </ul>
+</div>
 
-<h1>Welcome to my page</h1>
+<div class="data-container">
+    <?php
+    // Connecting to the PostgreSQL database
+    $host = '127.0.0.1';
+    $port = 5432;
+    $dbname = 'testdb';
+    $user = 'postgres';
+    $password = 'OliwierJ';
 
-<?php
-// Connecting to the PostgreSQL database
-$host = '127.0.0.1';
-$port = 5432;
-$dbname = 'pynqdata';
-$user = 'postgres';
-$password = 'OliE';
+    $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+    if (!$conn) {
+        die("Connection failed: " . pg_last_error());
+    }
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
-} else {
-    echo "Connected successfully";
-}
+    // Performing SQL query
+    $query = "SELECT number FROM Testnumbers";
+    $result = pg_query($conn, $query);
 
-// Close the connection
-pg_close($conn);
-?>
+    if (!$result) {
+        die("Query failed: " . pg_last_error());
+    }
+
+    // Fetching the data and displaying
+    while ($row = pg_fetch_assoc($result)) {
+        $number = $row['number'];
+        echo "<p>Number: $number</p>";
+    }
+
+    // Closing connection
+    pg_close($conn);
+    ?>
+</div>
+
 </body>
 </html>
+
+
+
+
+
+
