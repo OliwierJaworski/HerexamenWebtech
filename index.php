@@ -18,10 +18,14 @@ $password = 'OliE';
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . pg_last_error());
+} else {
+    echo "Connected successfully";
 }
-echo "Connected successfully";
+
+// Close the connection
+pg_close($conn);
 ?>
 </body>
 </html>
