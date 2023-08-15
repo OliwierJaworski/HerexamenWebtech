@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_URI'] === '/temperature.php') {
     // Connecting to the PostgreSQL database
     $host = '127.0.0.1';
     $port = 5432;
-    $dbname = 'testdb';
+    $dbname = 'olidb';
     $user = 'postgres';
     $password = 'oli';
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_URI'] === '/temperature.php') {
     }
 
     // Performing SQL query
-    $query = "SELECT number FROM Testnumbers";
+    $query = "SELECT numbers FROM olidb";
     $result = pg_query($conn, $query);
 
     if (!$result) {
@@ -48,8 +48,8 @@ if ($_SERVER['REQUEST_URI'] === '/temperature.php') {
 
     // Fetching the data and displaying
     while ($row = pg_fetch_assoc($result)) {
-        $number = $row['number'];
-        echo "<p>Number: $number</p>";
+        $numbers = $row['numbers'];
+        echo "<p>Numbers: $numbers</p>";
     }
 
     // Closing connection
