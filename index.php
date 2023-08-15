@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Thibeee</title>
+    <title>Test</title>
     <link href="StyleGelukt.css" rel="stylesheet">
 </head>
 <body>
@@ -20,7 +20,7 @@
     $port = 5432;
     $dbname = 'testdb';
     $user = 'postgres';
-    $password = 'OliwierJ';
+    $password = 'oli';
 
     $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
