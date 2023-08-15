@@ -1,13 +1,3 @@
-<?php
-// index.php
-
-// Check if the user is trying to access temperature.php
-if ($_SERVER['REQUEST_URI'] === '/temperature.php') {
-    header('Location: /var/www/api/v1/temperature.php');
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
