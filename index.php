@@ -18,7 +18,7 @@
     // Connecting to the PostgreSQL database
     $host = '127.0.0.1';
     $port = 5432;
-    $dbname = 'olidb';
+    $dbname = 'pynqdb';
     $user = 'postgres';
     $password = 'oli';
 
@@ -29,7 +29,7 @@
     }
 
     // Performing SQL query
-    $query = "SELECT numbers FROM olidb";
+    $query = "SELECT temperature FROM SendData";
     $result = pg_query($conn, $query);
 
     if (!$result) {
@@ -38,8 +38,8 @@
 
     // Fetching the data and displaying
     while ($row = pg_fetch_assoc($result)) {
-        $numbers = $row['numbers'];
-        echo "<p>Numbers: $numbers</p>";
+        $temperature = $row['temperature'];
+        echo "<p>temperature: $temperature</p>";
     }
 
     // Closing connection
