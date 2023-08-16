@@ -2,40 +2,20 @@
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 
-// Check if the 'temperature' key exists in the received data
-if (isset($data['temperature'])) {
-    $temperature = $data['temperature'];
+// Check if the data is not empty
+if (!empty($data)) {
+    // Convert the data array to a string
+    $dataString = print_r($data, true);
 
-    // Connect to the PostgreSQL database
-    $host = '127.0.0.1';
-    $port = 5400;
-    $dbname = 'testdb';
-    $user = 'postgres';
-    $password = 'oli';
+    // Write the data to the temperature.txt file
+    file_put_contents('temperature.txt', $dataString);
 
-    $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
-
-    if (!$conn) {
-        die("Connection failed: " . pg_last_error());
-    }
-
-    // Insert temperature data into the database
-    $query = "INSERT INTO SendData (temperature) VALUES ($1)";
-    $result = pg_query_params($conn, $query, array($temperature));
-
-    if (!$result) {
-        die("Insert failed: " . pg_last_error());
-    }
-
-    // Close the database connection
-    pg_close($conn);
-
-    // Send a success response
-    $response = array("message" => "Temperature data inserted successfully");
+    // Send a response indicating success
+    $response = array("message" => "Data written to temperature.txt successfully");
     echo json_encode($response);
 } else {
-    // Send a response indicating missing temperature data
-    $response = array("message" => "Temperature data missing");
+    // Send a response indicating no data received
+    $response = array("message" => "No data received");
     echo json_encode($response);
 }
 ?>
