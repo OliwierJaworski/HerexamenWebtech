@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 <?php
 // Get the JSON data from the incoming request
 $body = file_get_contents("php://input");
+echo "Received data: $body<br>";
 $data = json_decode($body, true);
 
 if (!$data) {
