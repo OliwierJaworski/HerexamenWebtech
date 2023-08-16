@@ -1,21 +1,26 @@
 <?php
+// Specify the full path to the directory where you want to create the file
+$filePath = '/var/www/html/HerexamenWebtech/api/v1/temperature.txt';
+
+// Get the JSON data from the incoming request
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 
-// Check if the data is not empty
-if (!empty($data)) {
-    // Convert the data array to a string
-    $dataString = print_r($data, true);
+// Open the file in write mode
+$fileHandle = fopen($filePath, 'w');
 
-    // Write the data to the temperature.txt file
-    file_put_contents('temperature.txt', $dataString);
-
-    // Send a response indicating success
-    $response = array("message" => "Data written to temperature.txt successfully");
-    echo json_encode($response);
-} else {
-    // Send a response indicating no data received
-    $response = array("message" => "No data received");
-    echo json_encode($response);
+if (!$fileHandle) {
+    die("Failed to open file for writing.");
 }
+
+// Write the temperature data to the file
+$temperature = $data['temperature'];
+fwrite($fileHandle, $temperature);
+
+// Close the file handle
+fclose($fileHandle);
+
+// Respond with a success message
+$response = array('message' => 'Data written to temperature.txt successfully');
+echo json_encode($response);
 ?>
