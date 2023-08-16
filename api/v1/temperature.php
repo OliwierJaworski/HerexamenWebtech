@@ -8,7 +8,7 @@ if (isset($data['temperature'])) {
 
     // Connect to the PostgreSQL database
     $host = '127.0.0.1';
-    $port = 5432;
+    $port = 5400;
     $dbname = 'testdb';
     $user = 'postgres';
     $password = 'oli';
@@ -30,10 +30,12 @@ if (isset($data['temperature'])) {
     // Close the database connection
     pg_close($conn);
 
-    // Send a response back
+    // Send a success response
     $response = array("message" => "Temperature data inserted successfully");
     echo json_encode($response);
 } else {
-    echo "Temperature data not found in the received JSON.";
+    // Send a response indicating missing temperature data
+    $response = array("message" => "Temperature data missing");
+    echo json_encode($response);
 }
 ?>
