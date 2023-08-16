@@ -22,7 +22,7 @@ if ($temperature === null) {
 // Connect to the PostgreSQL database
 $host = '127.0.0.1';
 $port = 5432;
-$dbname = 'testdb';
+$dbname = 'pynqdb';
 $user = 'postgres';
 $password = 'oli';
 
