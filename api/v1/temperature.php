@@ -7,7 +7,7 @@ $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 
 // Open the file in write mode
-$fileHandle = fopen($filePath, 'w');
+$fileHandle = fopen($filePath, 'a');
 
 if (!$fileHandle) {
     die("Failed to open file for writing.");
