@@ -33,7 +33,7 @@ if (!$conn) {
 }
 
 // Insert temperature data into the database
-$query = "INSERT INTO numbers (number) VALUES ($temperature)";
+$query = "INSERT INTO SendData (temperature) VALUES ($temperature)";
 $result = pg_query($conn, $query);
 
 if (!$result) {
