@@ -3,8 +3,8 @@
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 
-// Extract the temperature value from the data
-$temperature = $data['temperature'];
+// Extract the temperature value from the data and cast it to float
+$temperature = floatval($data['temperature']); // Convert to float
 
 // Connect to the PostgreSQL database
 $host = '127.0.0.1';
@@ -20,8 +20,8 @@ if (!$conn) {
 }
 
 // Insert temperature data into the database
-$query = "INSERT INTO numbers (number) VALUES ($temperature)";
-$result = pg_query($conn, $query);
+$query = "INSERT INTO numbers (number) VALUES ($1)";
+$result = pg_query_params($conn, $query, array($temperature));
 
 if (!$result) {
     die("Insert failed: " . pg_last_error());
