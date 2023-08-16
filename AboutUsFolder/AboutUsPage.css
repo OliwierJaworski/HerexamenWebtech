@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white
+}
+
+.square-window-left {
+    width: 40%; /* Adjust as needed */
+    margin-left: 100px;
+    height: 3333px; /* Same value as width to create a square */
+    position: relative; /* Enables positioning of other elements inside */
+    overflow: hidden; /* Hide overflowing content */
+    background: linear-gradient(45deg, #F27169, #FF9A5D); /* Gradient background */
+}
+.about-us {
+    position: absolute;
+    top: 300px; /* Adjust the top position */
+    left: 2050px; /* Adjust the left position */
+    text-align: center;
+    font-size: 400px;
+    font-weight: bold;
+}
+
+.about {
+    color: white; /* Set the color for "about" */
+}
+
+.us {
+    position: relative;
+    font-weight: bold;
+    font-size: 400px;
+    background: linear-gradient(to right, #FF9A5D, #FFC95B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    margin-left: 10px; /* Adjust as needed */
+}
+
+.right-column {
+    position: absolute;
+    top: 1500px; /* Adjust as needed */
+    right: 1400px; /* Adjust as needed */
+    display: flex;
+    align-items: flex-end; /* Align content to the right side */
+}
+
+.who-heading {
+    font-size: 100px;
+    color: #F27169;
+    margin: 0;
+    position: absolute;
+    top: 1300px; /* Adjust the top position as needed */
+    right: 2060px; /* Adjust the right position as needed */
+    font-family: 'serif',;
+}
+
+.who-description {
+    font-size: 66px;
+    line-height: 1.5;
+    text-align: justify;
+    position: absolute;
+    top: 1400px; /* Adjust the top position as needed */
+    right: 1500px; /* Adjust the right position as needed */
+    font-family: 'Open Sans', cursive;
+    word-wrap: break-word; /* Allow word wrapping within the container */
+    white-space: normal; /* Allow multiple lines of text */
+    max-width: 1500px; /* Adjust the maximum width as needed */
+}
+
+.goal-heading {
+    font-size: 100px;
+    color: #F27169;
+    margin: 0;
+    position: absolute;
+    top: 2300px; /* Adjust the top position as needed */
+    right: 2000px; /* Adjust the right position as needed */
+}
+
+.goal-description {
+    font-size: 66px;
+    line-height: 1.5;
+    text-align: justify;
+    position: absolute;
+    top: 2400px; /* Adjust the top position as needed */
+    right: 1500px; /* Adjust the right position as needed */
+    font-family: 'Open Sans', cursive;
+    word-wrap: break-word; /* Allow word wrapping within the container */
+    white-space: normal; /* Allow multiple lines of text */
+    max-width: 1500px; /* Adjust the maximum width as needed */
+}
+
+.white-circle {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 50%; /* Make it a circle */
+    position: absolute;
+    bottom: 2700px; /* Adjust the position as needed */
+    right: 2100px; /* Adjust the right position as needed */
+
+    border: 10px solid transparent;
+    border-image: linear-gradient(to right, #FF9A5D, #FFC95B);
+    border-image-slice: 1; /* Keep the whole border image */
+}
+
+.img-container {
+    position: absolute;
+    top: 620px; /* Adjust the top position as needed */
+    right: 2125px; /* Adjust the right position as needed */
+}
+
+img {
+    width: 350px; /* Adjust the width as needed */
+    height:  350px; /* Adjust the height as needed */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

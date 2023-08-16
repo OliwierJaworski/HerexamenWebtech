@@ -30,7 +30,7 @@
 
     // Performing SQL query
     $query = "SELECT temperature FROM SendData";
-    $result = pg_query($conn, $query);
+    $result = pg_query_params($conn, $query, []);
 
     if (!$result) {
         die("Query failed: " . pg_last_error());
