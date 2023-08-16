@@ -1,26 +1,44 @@
 <?php
-// Specify the full path to the directory where you want to create the file
-$filePath = '/var/www/html/HerexamenWebtech/api/v1/temperature.txt';
-
 // Get the JSON data from the incoming request
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
 
-// Open the file in write mode
-$fileHandle = fopen($filePath, 'a');
-
-if (!$fileHandle) {
-    die("Failed to open file for writing.");
+if (!$data) {
+    die("Error decoding JSON data.");
 }
 
-// Write the temperature data to the file
-$temperature = $data['temperature'];
-fwrite($fileHandle, $temperature);
+// Extract the temperature value from the data
+$temperature = isset($data['temperature']) ? $data['temperature'] : null;
 
-// Close the file handle
-fclose($fileHandle);
+if ($temperature === null) {
+    die("Temperature data missing in JSON.");
+}
 
-// Respond with a success message
-$response = array('message' => 'Data written to temperature.txt successfully');
+// Connect to the PostgreSQL database
+$host = '127.0.0.1';
+$port = 5432;
+$dbname = 'testdb';
+$user = 'postgres';
+$password = 'oli';
+
+$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+
+if (!$conn) {
+    die("Connection failed: " . pg_last_error());
+}
+
+// Insert temperature data into the database
+$query = "INSERT INTO numbers (number) VALUES ($temperature)";
+$result = pg_query($conn, $query);
+
+if (!$result) {
+    die("Insert failed: " . pg_last_error());
+}
+
+// Close the database connection
+pg_close($conn);
+
+// Send a response back to the PYNQ device
+$response = array("message" => "Temperature data inserted successfully");
 echo json_encode($response);
 ?>
