@@ -9,7 +9,7 @@
 <body>
 <div class="menu-bar">
     <ul>
-        <li class="active"><a href="index.html">back</a></li>
+        <li class="active"><a href="/api/v1/temperature.php">Go to Temperature</a></li>
     </ul>
 </div>
 
