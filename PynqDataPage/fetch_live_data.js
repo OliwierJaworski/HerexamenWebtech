@@ -1,47 +1,30 @@
-const { Pool } = require('pg');
-const Chart = require('chart.js');
-
-// PostgreSQL connection settings
-const pool = new Pool({
-    user: 'postgres',
-    host: '127.0.0.1',
-    database: 'pynqdb',
-    password: 'oli',
-    port: 5432,
-});
-
-// Fetch data from the database
-async function fetchData() {
-    try {
-        const result = await pool.query('SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20');
-        return result.rows;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return [];
+document.addEventListener("DOMContentLoaded", function() {
+    function fetchData() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    displayData(data);
+                } else {
+                    console.error("Error fetching data");
+                }
+            }
+        };
+        xhr.send();
     }
-}
 
-// Create the graph
-async function createGraph() {
-    const data = await fetchData();
+    function displayData(data) {
+        var container = document.getElementById("data-container");
+        var html = "<h2>Last 20 Temperature Readings</h2>";
+        html += "<table><tr><th>Time</th><th>Temperature</th></tr>";
+        for (var i = 0; i < data.length; i++) {
+            html += "<tr><td>" + data[i].time + "</td><td>" + data[i].temperature + "</td></tr>";
+        }
+        html += "</table>";
+        container.innerHTML = html;
+    }
 
-    const labels = data.map(entry => entry.time);
-    const values = data.map(entry => entry.temperature);
-
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Temperature',
-                data: values,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                fill: false,
-            }],
-        },
-    });
-}
-
-createGraph();
+    fetchData();
+});
