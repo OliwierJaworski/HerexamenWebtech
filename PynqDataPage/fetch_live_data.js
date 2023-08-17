@@ -35,6 +35,6 @@ $(document).ready(function() {
         });
     }
 
-    // Fetch live data and update chart every 5 seconds
+
     setInterval(fetchLiveData, 5000);
 });
