@@ -1,37 +1,40 @@
 $(document).ready(function() {
-    function fetchLiveData() {
-        $.ajax({
-            url: 'fetch_live_data.php', // PHP script to fetch data
-            method: 'GET',
-            dataType: 'json', // Change the data type to JSON
-            success: function(data) {
-                const labels = data.map(entry => entry.time);
-                const values = data.map(entry => entry.temperature);
+    function fetchStaticData() {
 
-                const ctx = document.getElementById('myChart').getContext('2d');
-                const myChart = new Chart(ctx, {
-                    type: 'line', // Use a line chart for better visualization of timestamps
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Temperature',
-                            data: values,
-                            borderColor: 'rgba(75, 192, 192, 1)', // Adjust colors as needed
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
+        const staticData = [
+            { date_column: "2023-08-01 12:00:00", temperature_column: 25 },
+            { date_column: "2023-08-02 12:00:00", temperature_column: 28 },
+            { date_column: "2023-08-02 12:00:00", temperature_column: 55 },
+            { date_column: "2023-08-02 12:00:00", temperature_column: 33 },
+            { date_column: "2023-08-02 12:00:00", temperature_column: 22 },
+        ];
+
+        const labels = staticData.map(entry => entry.date_column);
+        const values = staticData.map(entry => entry.temperature_column);
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Temperature',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
-                });
+                }
             }
         });
     }
 
-    // Fetch live data and update chart every 5 seconds
-    setInterval(fetchLiveData, 5000);
+    
+    fetchStaticData();
 });
