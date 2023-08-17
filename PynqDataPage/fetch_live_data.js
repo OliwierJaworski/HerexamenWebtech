@@ -1,14 +1,14 @@
 $(document).ready(function() {
-    function fetchLiveData() {
+    $('#fetchDataForm').submit(function(event) {
+        event.preventDefault();
+
         $.ajax({
-            url: 'fetch_live_data.php',
-            method: 'GET',
+            url: 'fetch_graph_data.php',
+            method: 'POST',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
-
-                const labels = data.map(entry => entry.date_column);
-                const values = data.map(entry => entry.temperature_column);
+                const labels = data.map(entry => entry.time);
+                const values = data.map(entry => entry.temperature);
 
                 const ctx = document.getElementById('myChart').getContext('2d');
                 const myChart = new Chart(ctx, {
@@ -19,7 +19,7 @@ $(document).ready(function() {
                             label: 'Temperature',
                             data: values,
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)', 
+                            borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         }]
                     },
@@ -33,8 +33,5 @@ $(document).ready(function() {
                 });
             }
         });
-    }
-
-
-    setInterval(fetchLiveData, 5000);
+    });
 });
