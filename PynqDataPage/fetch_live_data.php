@@ -1,6 +1,12 @@
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 <?php
+// Get the JSON data from the incoming request
+$body = file_get_contents("php://input");
+$data = json_decode($body, true);
+
+// Connect to the PostgreSQL database
 $host = '127.0.0.1';
 $port = 5432;
 $dbname = 'pynqdb';
@@ -10,26 +16,24 @@ $password = 'oli';
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if (!$conn) {
-    die("Connection failed: " . pg_last_error());
+die("Connection failed: " . pg_last_error());
 }
 
-$query = "SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20";
+// Insert temperature data into the database
+$query = "INSERT INTO SendData (temperature) VALUES ($data)";
 $result = pg_query($conn, $query);
 
 if (!$result) {
-    die("Query failed: " . pg_last_error());
+die("Insert failed: " . pg_last_error());
 }
 
-$data = array();
-while ($row = pg_fetch_assoc($result)) {
-    $data[] = array(
-        "time" => $row['time']->format('Y-m-d H:i:s'),
-        "temperature" => $row['temperature']
-    );
-}
-
+// Close the database connection
 pg_close($conn);
 
-header('Content-Type: application/json');
-echo json_encode($data);
+// Append the received data to the text file
+file_put_contents('received.txt', $body . "\n", FILE_APPEND);
+
+// Send a response back to the client
+$response = array("message" => "Temperature data inserted successfully");
+echo json_encode($response);
 ?>
