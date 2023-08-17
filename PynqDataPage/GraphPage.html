@@ -4,10 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+<div id="debug">Connecting to database...</div>
 <canvas id="myChart"></canvas>
-<script src="fetch_data.js"></script>
+
+<script>
+    const { Pool } = require('pg');
+    const Chart = require('chart.js');
+
+    // PostgreSQL connection settings
+    const pool = new Pool({
+        user: 'postgres',
+        host: '127.0.0.1',
+        database: 'pynqdb',
+        password: 'oli',
+        port: 5432,
+    });
+
+    // Update the debug message with connection status
+    const debugElement = document.getElementById('debug');
+    debugElement.innerHTML = 'Connecting to database...';
+
+    // Fetch data from the database
+    async function fetchData() {
+        try {
+            const result = await pool.query('SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20');
+            return result.rows;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return [];
+        }
+    }
+
+    // Create the graph
+    async function createGraph() {
+        const data = await fetchData();
+
+        const labels = data.map(entry => entry.time);
+        const values = data.map(entry => entry.temperature);
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Temperature',
+                    data: values,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false,
+                }],
+            },
+        });
+
+        // Update the debug message with graph created
+        debugElement.innerHTML = 'Connected to database and graph created.';
+    }
+
+    createGraph();
+</script>
 </body>
 </html>
+With this code, you'll see a debugging message that changes as the process proceeds: first indicating that it's connecting to the database, then updating to show that the graph is created. This way, you can have more insights into what's happening during the process directly on your HTML page.
+
+
+
+
+User
+so wait i can use javascript inside html
+ChatGPT
+Yes, you can use JavaScript inside HTML. In fact, JavaScript is commonly used to add interactivity and dynamic behavior to HTML web pages. You can include JavaScript code directly within <script> tags in your HTML file, just like the example I provided in the previous response. This allows you to manipulate the HTML elements and perform various actions based on user interactions or data fetching, as needed.
+
+
+
+
+
