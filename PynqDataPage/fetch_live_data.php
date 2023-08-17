@@ -31,7 +31,7 @@ while ($row = pg_fetch_assoc($result)) {
 pg_close($conn);
 
 // Write fetched data to the temperature.txt file for debugging
-file_put_contents('temperature.txt', json_encode($data) . "\n", FILE_APPEND);
+file_put_contents('temperature.txt', json_encode($data) . "\n");
 
 header('Content-Type: application/json');
 echo json_encode($data);
