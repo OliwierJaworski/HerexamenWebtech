@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function displayData(data) {
         var container = document.getElementById("data-container");
+        alert(container);
         var html = "<h2>Last 20 Temperature Readings</h2>";
         html += "<table><tr><th>Time</th><th>Temperature</th></tr>";
         for (var i = 0; i < data.length; i++) {
