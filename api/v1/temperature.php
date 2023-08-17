@@ -19,6 +19,9 @@ if ($temperature === null) {
     die("Temperature data missing in JSON.");
 }
 
+// Generate the current timestamp
+$currentTimestamp = date('Y-m-d H:i:s');
+
 // Connect to the PostgreSQL database
 $host = '127.0.0.1';
 $port = 5432;
@@ -32,8 +35,8 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-// Insert temperature data into the database
-$query = "INSERT INTO SendData (temperature) VALUES ($temperature)";
+// Insert temperature and current timestamp data into the database
+$query = "INSERT INTO SendData (temperature, time) VALUES ($temperature, '$currentTimestamp')";
 $result = pg_query($conn, $query);
 
 if (!$result) {
