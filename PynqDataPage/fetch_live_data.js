@@ -4,7 +4,7 @@ function fetchData() {
     alert("fetching data...");
     var XMLHttpRequest = require('xhr2');
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/server.js%22);
+    xhr.open("GET", "https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/server.js");
     xhr.onreadystatechange = readyChange;
     alert("Sending request to server.js...");
     xhr.send();
