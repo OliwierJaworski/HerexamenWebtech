@@ -11,7 +11,7 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-$query = "SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20"; // Update with your table name and limit
+$query = "SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20";
 $result = pg_query($conn, $query);
 
 if (!$result) {
@@ -21,7 +21,7 @@ if (!$result) {
 $data = array();
 while ($row = pg_fetch_assoc($result)) {
     $data[] = array(
-        "time" => $row['time']->format('Y-m-d H:i:s'), // Format timestamp as a string
+        "time" => $row['time']->format('Y-m-d H:i:s'),
         "temperature" => $row['temperature']
     );
 }
