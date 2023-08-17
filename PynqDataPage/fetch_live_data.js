@@ -5,18 +5,17 @@ $(document).ready(function() {
             method: 'GET',
             dataType: 'json', // Change the data type to JSON
             success: function(data) {
-                const labels = data.map(entry => entry.date_column);
-                const values = data.map(entry => entry.temperature_column);
+                const labels = data.map(entry => entry.time);
+                const values = data.map(entry => entry.temperature);
 
                 const ctx = document.getElementById('myChart').getContext('2d');
                 const myChart = new Chart(ctx, {
-                    type: 'bar',
+                    type: 'line', // Use a line chart for better visualization of timestamps
                     data: {
                         labels: labels,
                         datasets: [{
                             label: 'Temperature',
                             data: values,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Adjust colors as needed
                             borderColor: 'rgba(75, 192, 192, 1)', // Adjust colors as needed
                             borderWidth: 1
                         }]
