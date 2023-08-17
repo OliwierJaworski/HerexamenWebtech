@@ -13,10 +13,12 @@ const pool = new Pool({
     port: 5432
 });
 
-app.get('/data', async (req, res) => {
+app.get('/server.js', async (req, res) => {
     try {
+        alert("Getting data from postgres...");
         const query = 'SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20';
-        const { rows } = await pool.query(query);
+        const rows = await pool.query(query);
+        alert("data = " + rows);
         res.json(rows);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -25,5 +27,5 @@ app.get('/data', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(Server is running on port ${port});
 });
