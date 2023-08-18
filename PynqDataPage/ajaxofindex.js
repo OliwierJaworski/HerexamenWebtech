@@ -14,22 +14,47 @@ function fetchData(callback) {
     xhr.send();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    function displayData(data) {
-        var container = document.getElementById("data-container");
-        var html = "<h2>Last 20 Temperature Readings</h2>";
-        html += "<table><tr><th>Time</th><th>Temperature</th></tr>";
+function displayData(data) {
+    var container = document.getElementById("temperature-chart");
 
-        // Loop through each data object and format it
-        for (var i = 0; i < data.length; i++) {
-            var time = data[i].time; // Time in JSON format
-            var temperature = data[i].temperature;
-            html += "<tr><td>" + time + "</td><td>" + temperature + "</td></tr>";
+    // Extract time and temperature data from the fetched data
+    var labels = data.map(entry => entry.time);
+    var temperatures = data.map(entry => entry.temperature);
+
+    var ctx = container.getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature',
+                data: temperatures,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
+    });
+}
 
-        html += "</table>";
-        container.innerHTML = html;
-    }
-
+document.addEventListener("DOMContentLoaded", function() {
     fetchData(displayData);
+
+    // Automatically update the chart every 5 minutes (300,000 milliseconds)
+    setInterval(function() {
+        fetchData(displayData);
+    }, 300000); // 5 minutes in milliseconds
 });
