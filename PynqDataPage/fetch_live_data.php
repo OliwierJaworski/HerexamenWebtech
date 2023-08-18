@@ -1,6 +1,5 @@
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 <?php
+// Connecting to the PostgreSQL database
 $host = '127.0.0.1';
 $port = 5432;
 $dbname = 'pynqdb';
@@ -13,23 +12,20 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-$query = "SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20";
+// Performing SQL query
+$query = "SELECT temperature FROM SendData";
 $result = pg_query($conn, $query);
 
 if (!$result) {
     die("Query failed: " . pg_last_error());
 }
 
-$data = array();
+// Fetching the data and displaying
 while ($row = pg_fetch_assoc($result)) {
-    $data[] = array(
-        "time" => $row['time']->format('Y-m-d H:i:s'),
-        "temperature" => $row['temperature']
-    );
+    $temperature = $row['temperature'];
+    echo "<p>temperature: $temperature</p>";
 }
 
+// Closing connection
 pg_close($conn);
-
-header('Content-Type: application/json');
-echo json_encode($data);
 ?>
