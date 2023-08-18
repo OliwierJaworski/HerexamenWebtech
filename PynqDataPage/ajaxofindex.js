@@ -1,6 +1,6 @@
 function fetchData(callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:3333");
+    xhr.open("GET", "https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/fetch_live_data.php");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
