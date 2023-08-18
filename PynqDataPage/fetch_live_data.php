@@ -13,7 +13,7 @@ if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }
 
-$query = "SELECT time, temperature FROM SendData ORDER BY id DESC LIMIT 20";
+$query = "SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20";
 $result = pg_query($conn, $query);
 
 if (!$result) {
