@@ -22,8 +22,10 @@ if (!$result) {
 
 $data = array();
 while ($row = pg_fetch_assoc($result)) {
-    $data[] = $row['temperature'];
-
+    $data[] = array(
+        "time" => $row['time'],
+        "temperature" => $row['temperature']
+    );
 }
 
 // Closing connection
