@@ -1,6 +1,6 @@
 function fetchData(callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/data");
+    xhr.open("GET", "PynqDataPage/index.js");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
