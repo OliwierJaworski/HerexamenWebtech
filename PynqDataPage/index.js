@@ -16,6 +16,7 @@ app.get('/data',(req, res)=>{
         .then(()=>client.query("SELECT time, temperature FROM SendData ORDER BY id DESC LIMIT 20"))
         .then(results => console.table(results.rows))
         .then(results => {const jsonData = results.rows;
+            
             res.json(jsonData);})
 
 
