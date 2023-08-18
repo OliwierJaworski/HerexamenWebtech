@@ -20,12 +20,15 @@ if (!$result) {
     die("Query failed: " . pg_last_error());
 }
 
-// Fetching the data and displaying
+$data = array();
 while ($row = pg_fetch_assoc($result)) {
-    $temperature = $row['temperature'];
-    echo "<p>temperature: $temperature</p>";
+    $data[] = $row['temperature'];
+
 }
 
 // Closing connection
 pg_close($conn);
+
+header('Content-Type: application/json');
+echo json_encode($data);
 ?>
