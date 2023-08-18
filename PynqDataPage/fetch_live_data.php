@@ -13,7 +13,7 @@ if (!$conn) {
 }
 
 // Performing SQL query
-$query = "SELECT temperature FROM SendData";
+$query = "SELECT temperature FROM SendData ORDER BY id DESC LIMIT 20";
 $result = pg_query($conn, $query);
 
 if (!$result) {
