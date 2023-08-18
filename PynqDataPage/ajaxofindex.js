@@ -14,6 +14,15 @@ function fetchData(callback) {
     xhr.send();
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    fetchData(displayData);
+
+    // Automatically update the chart every 5 minutes (300,000 milliseconds)
+    setInterval(function() {
+        fetchData(displayData);
+    }, 300000); // 5 minutes in milliseconds
+});
+
 function displayData(data) {
     var container = document.getElementById("temperature-chart");
 
@@ -39,7 +48,8 @@ function displayData(data) {
                 x: {
                     type: 'time',
                     time: {
-                        unit: 'day'
+                        parser: 'iso', // Use Luxon's ISO parser
+                        unit: 'day',   // Set the time unit you want to display
                     }
                 },
                 y: {
@@ -49,12 +59,3 @@ function displayData(data) {
         }
     });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    fetchData(displayData);
-
-    // Automatically update the chart every 5 minutes (300,000 milliseconds)
-    setInterval(function() {
-        fetchData(displayData);
-    }, 300000); // 5 minutes in milliseconds
-});
