@@ -1,6 +1,6 @@
 function fetchData(callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "127.0.0.1:3333");
+    xhr.open("GET", "http://localhost:3333");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
