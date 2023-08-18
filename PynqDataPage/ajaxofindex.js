@@ -4,7 +4,7 @@ function fetchData(callback) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                var data = xhr.responseText;
+                var data = JSON.parse(xhr.responseText); // Parse the JSON response
                 callback(data);
             } else {
                 console.error("Error fetching data");
@@ -17,7 +17,18 @@ function fetchData(callback) {
 document.addEventListener("DOMContentLoaded", function() {
     function displayData(data) {
         var container = document.getElementById("data-container");
-        container.textContent = JSON.stringify(data, null, 2);
+        var html = "<h2>Last 20 Temperature Readings</h2>";
+        html += "<table><tr><th>Time</th><th>Temperature</th></tr>";
+
+        // Loop through each data object and format it
+        for (var i = 0; i < data.length; i++) {
+            var time = data[i].time; // Time in JSON format
+            var temperature = data[i].temperature;
+            html += "<tr><td>" + time + "</td><td>" + temperature + "</td></tr>";
+        }
+
+        html += "</table>";
+        container.innerHTML = html;
     }
 
     fetchData(displayData);
