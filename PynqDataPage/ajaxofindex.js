@@ -32,4 +32,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     fetchData(displayData);
+    setInterval(updateData, 5000);
 });
