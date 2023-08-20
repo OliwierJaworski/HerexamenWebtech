@@ -15,14 +15,6 @@ $(document).ready(function() {
         container.innerHTML = html;
     }
 
-    function updateData() {
-        console.log("Updating data...");
-        fetchData(displayData);
-
-        var square = document.getElementById("color-square");
-        square.style.backgroundColor = square.style.backgroundColor === "white" ? "black" : "white";
-    }
-
     function fetchData(callback) {
         $("#data-container").load("https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/fetch_live_data.php", function(response, status, xhr) {
             if (status === "success") {
@@ -32,6 +24,12 @@ $(document).ready(function() {
                 console.error("Error fetching data");
             }
         });
+    }
+
+    function updateData()
+    {
+        console.log("Updating data...");
+        location.reload();
     }
 
     setInterval(updateData, 5000);
