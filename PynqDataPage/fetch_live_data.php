@@ -4,33 +4,32 @@ $host = '127.0.0.1';
 $port = 5432;
 $dbname = 'pynqdb';
 $user = 'postgres';
-$password = 'oli';
+$password = 'HeelMoeilijkeWachtWoordVoorDatabase';
 
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
-
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
+//verbinding maken met db
+$pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
+if (!$pdo) 
+{
+    die("Connection failed");
 }
-
-// Performing SQL query
-$query = "SELECT time, temperature FROM SendData ORDER BY time DESC LIMIT 20";
-$result = pg_query($conn, $query);
-
-if (!$result) {
-    die("Query failed: " . pg_last_error());
+//query uitvoere
+$query = "SELECT time, temperature FROM senddata ORDER BY time DESC LIMIT 20";
+$preparedQuery = $pdo->prepare($query);
+//als geen verbinding gemaakt kan worden
+if (!$preparedQuery->execute()) 
+{
+    die("Query failed");
 }
 
 $data = array();
-while ($row = pg_fetch_assoc($result)) {
+while ($row = $preparedQuery->fetch(PDO::FETCH_ASSOC)) 
+{
     $data[] = array(
         "time" => $row['time'],
         "temperature" => $row['temperature']
     );
 }
-
-// Closing connection
-pg_close($conn);
-
+//stuur data naar ajax
 header('Content-Type: application/json');
 echo json_encode($data);
 ?>
