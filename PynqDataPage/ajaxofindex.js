@@ -1,4 +1,20 @@
-$(document).ready(function() {
+function fetchData(callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/fetch_live_data.php");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText); // Parse the JSON response
+                callback(data);
+            } else {
+                console.error("Error fetching data");
+            }
+        }
+    };
+    xhr.send();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
     function displayData(data) {
         var container = document.getElementById("data-container");
         var html = "<h2>Last 20 Temperature Readings</h2>";
@@ -15,25 +31,5 @@ $(document).ready(function() {
         container.innerHTML = html;
     }
 
-    function fetchData(callback) {
-        $("#data-container").load("https://server-of-oliwier.pxl.bjth.xyz/PynqDataPage/fetch_live_data.php", function(response, status, xhr) {
-            if (status === "success") {
-                var data = JSON.parse(response);
-                callback(data);
-            } else {
-                console.error("Error fetching data");
-            }
-        });
-    }
-
-    function updateData()
-    {
-        console.log("Updating data...");
-        location.reload();
-        fetchData();
-    }
-
-    setInterval(updateData, 5000);
+    fetchData(displayData);
 });
-
-
