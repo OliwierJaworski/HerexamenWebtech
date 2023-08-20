@@ -1,0 +1,89 @@
+.achtergrond {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#C4A15B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: blur(8px) brightness(70%);
+}
+
+.right-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: blur(8px) brightness(70%);
+}
+.Buiten-Window {
+    width: 400px;
+    background: linear-gradient(to bottom, #006D8B, #97FDFF);
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+
+}
+.binnen-window{
+    background-color: #232C47;
+    padding: 40px;
+    border-radius: 4px;
+}
+h2{
+    top:100%;
+    font-size: 33px;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to bottom, #C4A15B, #EDDC91);
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-family: Spiegel, sans-serif;
+}
+
+.ASK-AGE{
+    size: 10px;
+    color: #f9f9f9;
+    font-family: Spiegel, sans-serif;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.button-container button {
+    font-family: Spiegel, sans-serif;
+    background: linear-gradient(to bottom, #C4A15B, #EDDC91);
+    color: grey;
+    outline: 1px solid grey;
+    margin: 5px;
+    border: white;
+    outline: 1px solid grey;
+
+}
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content button {
+    margin: 10px;
+}

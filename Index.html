@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Example</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CaseFinder</title>
+    <link href="index.css" rel="stylesheet">
+    <script src="index.js"></script>
+    <audio id="hoverSound" src="LeagueSounds/hover.mp3"></audio>
 </head>
-<body>
-<div class="menu-bar">
-    <ul>
-        <li><a href="AboutUsFolder/AboutUsPage.html">About Us</a></li>
-        <li><a href="PynqDataPage/GraphPage.html">Graph Page</a></li>
-    </ul>
+
+<div class = "menu-bar">
+    <!--ul>
+        <li class="active"><a href="AboutUs.html">About us</a></--li>
+
+    </ul-->
+</div>
+
+<div class="achtergrond" id="achtergrond">
+
+    <img src="mordekaiser.jpg" class="left-image" alt="Left Image">
+    <img src="Shaco.jpg" class="right-image" alt="Right Image">
+
+    <div class="Buiten-Window">
+
+        <div class="binnen-window">
+
+        <h2>Age Verification</h2>
+
+            <div class="ASK-AGE">
+                <p>Are you older than 18?</p>
+            </div>
+
+            <div class="button-container">
+                <button onclick="verifyAge(true); clicksound();" onmouseover="changeButtonStyle(this, '#97FDFF', 'antiquewhite'); hoverSound.play()" onmouseout="changeButtonStyle(this, 'white', 'grey'); hoverSound.pause(); hoverSound.currentTime = 0">Yes</button>
+                <button  onclick="redirectToAboutPage(true); clicksound();" onmouseover="changeButtonStyle(this, '#97FDFF', 'antiquewhite'); hoverSound.play()" onmouseout="changeButtonStyle(this, 'white', 'grey'); hoverSound.pause(); hoverSound.currentTime = 0">Maybe</button>
+                <button  onclick="verifyAge(false); clicksound();" onmouseover="changeButtonStyle(this, '#97FDFF', 'antiquewhite'); hoverSound.play()" onmouseout="changeButtonStyle(this, 'white', 'grey'); hoverSound.pause(); hoverSound.currentTime = 0">No</button>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 </body>
