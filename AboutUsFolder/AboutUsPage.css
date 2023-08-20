@@ -10,17 +10,17 @@ body {
 .square-window-left {
     width: 40%; /* Adjust as needed */
     margin-left: 100px;
-    height: 3333px; /* Same value as width to create a square */
+    height: 923px; /* Same value as width to create a square */
     position: relative; /* Enables positioning of other elements inside */
     overflow: hidden; /* Hide overflowing content */
     background: linear-gradient(45deg, #F27169, #FF9A5D); /* Gradient background */
 }
 .about-us {
     position: absolute;
-    top: 300px; /* Adjust the top position */
-    left: 2050px; /* Adjust the left position */
+    top: 10px; /* Adjust the top position */
+    left: 570px; /* Adjust the left position */
     text-align: center;
-    font-size: 400px;
+    font-size: 100px;
     font-weight: bold;
 }
 
@@ -31,7 +31,7 @@ body {
 .us {
     position: relative;
     font-weight: bold;
-    font-size: 400px;
+    font-size: 100px;
     background: linear-gradient(to right, #FF9A5D, #FFC95B);
     -webkit-background-clip: text;
     background-clip: text;
@@ -42,80 +42,80 @@ body {
 
 .right-column {
     position: absolute;
-    top: 1500px; /* Adjust as needed */
+    top: 11px; /* Adjust as needed */
     right: 1400px; /* Adjust as needed */
     display: flex;
     align-items: flex-end; /* Align content to the right side */
 }
 
 .who-heading {
-    font-size: 100px;
+    font-size: 33px;
     color: #F27169;
     margin: 0;
     position: absolute;
-    top: 1300px; /* Adjust the top position as needed */
-    right: 2060px; /* Adjust the right position as needed */
+    top: 390px; /* Adjust the top position as needed */
+    right: 470px; /* Adjust the right position as needed */
     font-family: 'serif',;
 }
 
 .who-description {
-    font-size: 66px;
+    font-size: 11px;
     line-height: 1.5;
     text-align: justify;
     position: absolute;
-    top: 1400px; /* Adjust the top position as needed */
-    right: 1500px; /* Adjust the right position as needed */
+    top: 425px; /* Adjust the top position as needed */
+    right: 400px; /* Adjust the right position as needed */
     font-family: 'Open Sans', cursive;
     word-wrap: break-word; /* Allow word wrapping within the container */
     white-space: normal; /* Allow multiple lines of text */
-    max-width: 1500px; /* Adjust the maximum width as needed */
+    max-width: 300px; /* Adjust the maximum width as needed */
 }
 
 .goal-heading {
-    font-size: 100px;
+    font-size: 33px;
     color: #F27169;
     margin: 0;
     position: absolute;
-    top: 2300px; /* Adjust the top position as needed */
-    right: 2000px; /* Adjust the right position as needed */
+    top: 560px; /* Adjust the top position as needed */
+    right: 445px; /* Adjust the right position as needed */
 }
 
 .goal-description {
-    font-size: 66px;
+    font-size: 11px;
     line-height: 1.5;
     text-align: justify;
     position: absolute;
-    top: 2400px; /* Adjust the top position as needed */
-    right: 1500px; /* Adjust the right position as needed */
+    top: 600px; /* Adjust the top position as needed */
+    right: 400px; /* Adjust the right position as needed */
     font-family: 'Open Sans', cursive;
     word-wrap: break-word; /* Allow word wrapping within the container */
     white-space: normal; /* Allow multiple lines of text */
-    max-width: 1500px; /* Adjust the maximum width as needed */
+    max-width: 300px; /* Adjust the maximum width as needed */
 }
 
 .white-circle {
-    width: 400px;
-    height: 400px;
+    width: 100px;
+    height: 100px;
     background-color: white;
     border-radius: 50%; /* Make it a circle */
     position: absolute;
-    bottom: 2700px; /* Adjust the position as needed */
-    right: 2100px; /* Adjust the right position as needed */
+    bottom: 570px; /* Adjust the position as needed */
+    right: 482px; /* Adjust the right position as needed */
 
-    border: 10px solid transparent;
+    border: 5px solid transparent;
     border-image: linear-gradient(to right, #FF9A5D, #FFC95B);
     border-image-slice: 1; /* Keep the whole border image */
 }
 
 .img-container {
     position: absolute;
-    top: 620px; /* Adjust the top position as needed */
-    right: 2125px; /* Adjust the right position as needed */
+    bottom: 580px; /* Adjust the top position as needed */
+    right: 500px; /* Adjust the right position as needed */
 }
 
 img {
-    width: 350px; /* Adjust the width as needed */
-    height:  350px; /* Adjust the height as needed */
+    width: 75px; /* Adjust the width as needed */
+    height:  75px; /* Adjust the height as needed */
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
