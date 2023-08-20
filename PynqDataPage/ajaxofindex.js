@@ -30,6 +30,7 @@ $(document).ready(function() {
     {
         console.log("Updating data...");
         location.reload();
+        fetchData();
     }
 
     setInterval(updateData, 5000);
