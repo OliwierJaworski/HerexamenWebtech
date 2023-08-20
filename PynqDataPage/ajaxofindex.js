@@ -31,5 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         container.innerHTML = html;
     }
 
-    fetchData(displayData);
+    SetInterval(function () {
+        fetchData(displayData);
+    }, 5000);
 });
