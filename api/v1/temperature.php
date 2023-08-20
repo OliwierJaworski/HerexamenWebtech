@@ -31,7 +31,7 @@ if (!$conn)
     die("Connection failed: " . pg_last_error());
 }
 
-$query = "INSERT INTO SendData (temperature, time) VALUES ($1, $2)";
+$query = "INSERT INTO senddata (temperature, time) VALUES ($1, $2)";
 $result = pg_query_params($conn, $query, array($temperature, $currentTimestamp));
 if (!$result)
 {
