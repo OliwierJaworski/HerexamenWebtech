@@ -13,6 +13,10 @@ function fetchData(callback) {
     };
     xhr.send();
 }
+function updateData() {
+    console.log("Updating data...");
+    fetchData(displayData);
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     function displayData(data) {
@@ -31,6 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
         container.innerHTML = html;
     }
 
-    fetchData(displayData);
+    //fetchData(displayData);
     setInterval(updateData, 5000);
 });
